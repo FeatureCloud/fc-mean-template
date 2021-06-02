@@ -1,6 +1,5 @@
 import json
 import time
-
 from bottle import Bottle, request
 
 from .logic import logic

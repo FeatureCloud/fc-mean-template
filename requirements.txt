@@ -1,9 +1,5 @@
 bottle
 numpy
-scipy
-scikit-learn
-matplotlib
 jsonpickle
-joblib
 pyyaml
 pandas

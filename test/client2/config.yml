@@ -1,0 +1,9 @@
+fc_linear_regression:
+  files:
+    input: "client2.csv"
+    sep: ","
+    label_column: "TARGET_deathRate"
+
+  evaluation:
+    test_size: 0.33 # if None, no evaluation will be performed
+    random_state: 42 # For reproducibility

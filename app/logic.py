@@ -36,6 +36,8 @@ class AppLogic:
         self.INPUT_DIR = "/mnt/input"
         self.OUTPUT_DIR = "/mnt/output"
 
+        self.data_name = None
+
         self.client = None
 
     def handle_setup(self, client_id, coordinator, clients):
@@ -58,6 +60,12 @@ class AppLogic:
         # This method is called when data is requested
         self.status_available = False
         return self.data_outgoing
+
+    def read_config(self):
+        with open(self.INPUT_DIR + '/config.yml') as f:
+            config = yaml.load(f, Loader=yaml.FullLoader)['fc_mean']
+            self.input_name = config['input_name']
+            self.output_name = config['output_name']
 
     def app_flow(self):
         # This method contains a state machine for the client and coordinator instance
@@ -85,10 +93,12 @@ class AppLogic:
                     else:
                         self.client = Client()
                     state = state_read_input
+
             if state == state_read_input:
                 print("Read input", flush=True)
                 self.progress = 'read input'
-                self.client.read_input()
+                self.read_config()
+                self.client.read_input(self.INPUT_DIR + '/' + self.input_name)
                 state = state_local_computation
 
             if state == state_local_computation:
@@ -135,7 +145,7 @@ class AppLogic:
             if state == state_writing_results:
                 print("Writing results", flush=True)
                 # now you can save it to a file
-                self.client.write_results()
+                self.client.write_results(self.OUTPUT_DIR + '/' + self.output_name)
                 state = state_finishing
 
             if state == state_finishing:

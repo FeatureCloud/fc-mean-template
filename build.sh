@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build . --tag registry.featurecloud.eu:5000/fc_mean_app
+docker build . --tag featurecloud.ai/fc_mean_app

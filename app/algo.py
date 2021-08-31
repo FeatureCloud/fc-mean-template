@@ -1,9 +1,6 @@
 import numpy as np
 import pandas as pd
 
-INPUT_PATH = "/mnt/input/data.csv"
-OUTPUT_PATH = "/mnt/output/result.txt"
-
 
 class Client:
     input_data = None
@@ -15,9 +12,9 @@ class Client:
     def __init__(self):
         pass
 
-    def read_input(self):
+    def read_input(self, input_path):
         try:
-            self.input_data = pd.read_csv(INPUT_PATH, header=None)
+            self.input_data = pd.read_csv(input_path, header=None)
         except FileNotFoundError:
             print(f'File {INPUT_PATH} could not be found.', flush=True)
             exit()
@@ -35,8 +32,8 @@ class Client:
     def set_global_mean(self, global_mean):
         self.global_mean = global_mean
 
-    def write_results(self):
-        f = open(OUTPUT_PATH, "a")
+    def write_results(self, output_path):
+        f = open(output_path, "a")
         f.write(str(self.global_mean))
         f.close()
 

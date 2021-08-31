@@ -66,6 +66,8 @@ class AppLogic:
             config = yaml.load(f, Loader=yaml.FullLoader)['fc_mean']
             self.input_name = config['input_name']
             self.output_name = config['output_name']
+        shutil.copyfile(self.INPUT_DIR + "/config.yml", self.OUTPUT_DIR + "/config.yml")
+
 
     def app_flow(self):
         # This method contains a state machine for the client and coordinator instance

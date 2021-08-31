@@ -1,36 +1,21 @@
-# Linear regression FeatureCloud App
+# Mean Template FeatureCloud App
 
 ## Description
-A Linear Regression FeautureCloud app, allowing a federated computation of the linear regression algorithm.
+A Mean FeautureCloud app, allowing the computation of a federated mean. This repository can be used as a template repository and is a good starting point for you own implementations.
 
 ## Input
-- train.csv containing the local training data (columns: features; rows: samples)
-- test.csv containing the local test data
+- data.csv containing the comma seperated local values
 
 ## Output
-- pred.csv containing the predicted value 
-- train.csv containing the local training data
-- test.csv containing the local test data
+- output.csv containing the global mean
 
 ## Workflows
-Can be combined with the following apps:
-- Pre: Cross Validation, Normalization, Feature Selection
-- Post: Regression Evaluation
+Does not support any other apps to be executed in a workflow. This app is only available to support developers in their own implementations.
 
 ## Config
 Use the config file to customize your training. Just upload it together with your training data as `config.yml`
 ```
-fc_linear_regression
-  input:
-    train: "train.csv"
-    test: "test.csv"
-  output:
-    pred: "pred.csv"
-    test: "test.csv"
-  format:
-    sep: ","
-    label: "target
-  split:
-    mode: directory # directory if cross validation was used before, else file
-    dir: data # data if cross validation app was used before, else .
+fc_mean
+  input_name: "data.csv"
+  output_name: "output.csv"
 ```

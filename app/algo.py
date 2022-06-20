@@ -16,7 +16,7 @@ class Client:
         try:
             self.input_data = pd.read_csv(input_path, header=None)
         except FileNotFoundError:
-            print(f'File {INPUT_PATH} could not be found.', flush=True)
+            print(f'File {input_path} could not be found.', flush=True)
             exit()
         except Exception as e:
             print(f'File could not be parsed: {e}', flush=True)

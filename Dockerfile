@@ -1,11 +1,11 @@
-FROM python:3.7-slim-stretch
+FROM python:3.8-slim
 
-RUN apt-get update
+RUN apt-get update -y
 RUN apt-get upgrade -y
 RUN apt-get install -y supervisor nginx
 RUN pip3 install --upgrade pip
 
-COPY requirements.txt ./requirements.txt
+COPY requirements.txt /requirements.txt
 RUN pip3 install -r ./requirements.txt
 
 COPY server_config/supervisord.conf /supervisord.conf
